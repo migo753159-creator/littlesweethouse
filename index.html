@@ -51,17 +51,18 @@ section {
     text-align: center;
 }
 
-/* 統一的卡片佈局容器 */
+/* 佈局容器 */
 .item-grid-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: flex-start; /* 讓不同高度的卡片對齊頂部 */
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Menu 與 Products 共用的卡片樣式 */
+/* 卡片樣式 */
 .item-card {
     flex: 1 1 calc(33.333% - 40px);
     min-width: 280px;
@@ -76,4 +77,86 @@ section {
 }
 
 .item-card:hover {
-    transform
+    transform: translateY(-5px);
+}
+
+/* 核心修改：自動高度容器 */
+.item-img-container {
+    width: 100%;
+    height: auto; /* 移除固定高度，改為自動 */
+    display: block; /* 讓容器隨圖片撐開 */
+    background-color: #fff;
+}
+
+.item-img {
+    width: 100%;
+    height: auto; /* 讓圖片根據寬度等比例縮放 */
+    display: block;
+    object-fit: contain;
+}
+
+.item-content {
+    padding: 15px;
+}
+
+/* About Us */
+.about-card {
+    background: white;
+    padding: 20px;
+    margin: 15px auto;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    max-width: 600px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #8b4513;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: #a0522d;
+}
+
+footer {
+    background-color: #8b4513;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+    .item-card {
+        flex: 1 1 100%;
+        max-width: 400px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Little Sweet House 🍫</h1>
+    <p>We create trendy and viral desserts inspired by Dubai chocolate.</p>
+</header>
+
+<nav>
+    <a href="#about">About Us</a>
+    <a href="#menu">Menu</a>
+    <a href="#products">Products</a>
+    <a href="#team">Our Team</a>
+</nav>
+
+<section id="about">
+    <h2>About Us</h2>
+    <div class="about-card">
+        <p>A premium dessert boutique in Guangfu New Village</p>
+        <p>Specializing in Dubai chocolates
