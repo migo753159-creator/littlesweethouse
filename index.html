@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
@@ -51,18 +52,18 @@ section {
     text-align: center;
 }
 
-/* 佈局容器 */
+/* 卡片容器 */
 .item-grid-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: flex-start; /* 讓不同高度的卡片對齊頂部 */
+    align-items: flex-start;
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* 卡片樣式 */
+/* 卡片 */
 .item-card {
     flex: 1 1 calc(33.333% - 40px);
     min-width: 280px;
@@ -80,26 +81,20 @@ section {
     transform: translateY(-5px);
 }
 
-/* 核心修改：自動高度容器 */
 .item-img-container {
     width: 100%;
-    height: auto; /* 移除固定高度，改為自動 */
-    display: block; /* 讓容器隨圖片撐開 */
-    background-color: #fff;
 }
 
 .item-img {
     width: 100%;
-    height: auto; /* 讓圖片根據寬度等比例縮放 */
     display: block;
-    object-fit: contain;
 }
 
 .item-content {
     padding: 15px;
 }
 
-/* About Us */
+/* About */
 .about-card {
     background: white;
     padding: 20px;
@@ -109,6 +104,7 @@ section {
     max-width: 600px;
 }
 
+/* Button */
 .btn {
     display: inline-block;
     padding: 10px 15px;
@@ -117,19 +113,50 @@ section {
     border-radius: 8px;
     text-decoration: none;
     margin-top: 10px;
-    transition: 0.3s;
+    cursor: pointer;
 }
 
-.btn:hover {
-    background-color: #a0522d;
-}
-
+/* Footer */
 footer {
     background-color: #8b4513;
     color: white;
     text-align: center;
     padding: 15px;
     margin-top: 30px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+    background: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    text-align: left;
+}
+
+.modal input {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+}
+
+.close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -139,6 +166,7 @@ footer {
     }
 }
 </style>
+
 </head>
 
 <body>
@@ -158,82 +186,61 @@ footer {
 <section id="about">
     <h2>About Us</h2>
     <div class="about-card">
-        <p>A premium dessert boutique in Guangfu New Village</p>
-        <p>Specializing in Dubai chocolates, filled with pistachio cream and kunafa</p>
-        <p>Their crunchy yet creamy texture offers you an unforgettable indulgence.</p>
+        <p>A premium dessert boutique</p>
+        <p>Specializing in Dubai chocolates with pistachio cream and kunafa</p>
     </div>
 </section>
 
 <section id="menu">
     <h2>Our Menu</h2>
     <div class="item-grid-container">
-        <div class="item-card">
-            <div class="item-img-container">
-                <img src="IMG_1035.jpeg" class="item-img" alt="DUBAI CHEWY COOKIE">
-            </div>
-        </div>
-        <div class="item-card">
-            <div class="item-img-container">
-                <img src="IMG_1031.jpeg" class="item-img" alt="Kunafa laver">
-            </div>
-        </div>
-        <div class="item-card">
-            <div class="item-img-container">
-                <img src="IMG_1032.jpeg" class="item-img" alt="COOKIES, CHOCOLATE">
-            </div>
-        </div>
-        <div class="item-card">
-            <div class="item-img-container">
-                <img src="IMG_1033.jpeg" class="item-img" alt="MOCHI, BREAD, CROISSANT">
-            </div>
-        </div>
-        <div class="item-card">
-            <div class="item-img-container">
-                <img src="IMG_1034.jpeg" class="item-img" alt="CAKES, DESSERT BOX">
-            </div>
-        </div>
-        <div class="item-card">
-            <div class="item-img-container">
-                <img src="IMG_1036.jpeg" class="item-img" alt="Pistachio Cake">
-            </div>
-        </div>
+        <div class="item-card"><img src="IMG_1035.jpeg" class="item-img"></div>
+        <div class="item-card"><img src="IMG_1031.jpeg" class="item-img"></div>
+        <div class="item-card"><img src="IMG_1032.jpeg" class="item-img"></div>
     </div>
 </section>
 
 <section id="products">
     <h2>Products</h2>
     <div class="item-grid-container">
-        <div class="item-card">
-            <div class="item-img-container">
-                <img src="IMG_one.webp" class="item-img" alt="Single Chocolate">
-            </div>
-            <div class="item-content">
-                <h3>Single Chocolate</h3>
-                <p>NT$120 – NT$180</p>
-                <a href="#" class="btn">Buy Now</a>
-            </div>
+
+```
+    <div class="item-card">
+        <div class="item-img-container">
+            <img src="IMG_one.webp" class="item-img">
         </div>
-        <div class="item-card">
-            <div class="item-img-container">
-                <img src="IMG_four.webp" class="item-img" alt="Box of 4">
-            </div>
-            <div class="item-content">
-                <h3>Box of 4</h3>
-                <p>NT$450 – NT$650</p>
-                <a href="#" class="btn">Buy Now</a>
-            </div>
-        </div>
-        <div class="item-card">
-            <div class="item-img-container">
-                <img src="IMG_six.webp" class="item-img" alt="Box of 6">
-            </div>
-            <div class="item-content">
-                <h3>Box of 6</h3>
-                <p>NT$650 – NT$900</p>
-                <a href="#" class="btn">Buy Now</a>
-            </div>
+        <div class="item-content">
+            <h3>Single Chocolate</h3>
+            <p>NT$120 – NT$180</p>
+            <a onclick="openModal('Single Chocolate')" class="btn">Buy Now</a>
         </div>
     </div>
+
+    <div class="item-card">
+        <div class="item-img-container">
+            <img src="IMG_four.webp" class="item-img">
+        </div>
+        <div class="item-content">
+            <h3>Box of 4</h3>
+            <p>NT$450 – NT$650</p>
+            <a onclick="openModal('Box of 4')" class="btn">Buy Now</a>
+        </div>
+    </div>
+
+    <div class="item-card">
+        <div class="item-img-container">
+            <img src="IMG_six.webp" class="item-img">
+        </div>
+        <div class="item-content">
+            <h3>Box of 6</h3>
+            <p>NT$650 – NT$900</p>
+            <a onclick="openModal('Box of 6')" class="btn">Buy Now</a>
+        </div>
+    </div>
+
+</div>
+```
+
 </section>
 
 <section id="team">
@@ -247,10 +254,58 @@ footer {
     </div>
 </section>
 
+<!-- Modal 下單視窗 -->
+
+<div id="orderModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Order Now 🛒</h2>
+
+```
+    <form id="orderForm">
+        <label>Product</label>
+        <input type="text" id="product" readonly>
+
+        <label>Name</label>
+        <input type="text" required>
+
+        <label>Phone</label>
+        <input type="text" required>
+
+        <label>Quantity</label>
+        <input type="number" min="1" required>
+
+        <button type="submit" class="btn">Submit Order</button>
+    </form>
+
+    <p id="successMsg" style="display:none; color:green;">
+        ✅ Order submitted!
+    </p>
+</div>
+```
+
+</div>
+
 <footer>
-    <p>© 2026 Little Sweet House design by Migo</p>
-    <p>Follow us on Instagram 🍫</p>
+    <p>© 2026 Little Sweet House</p>
 </footer>
+
+<script>
+function openModal(productName) {
+    document.getElementById("orderModal").style.display = "block";
+    document.getElementById("product").value = productName;
+}
+
+function closeModal() {
+    document.getElementById("orderModal").style.display = "none";
+}
+
+document.getElementById("orderForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    document.getElementById("successMsg").style.display = "block";
+    this.reset();
+});
+</script>
 
 </body>
 </html>
