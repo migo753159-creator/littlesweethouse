@@ -302,18 +302,23 @@ footer { background-color: #8b4513; color: white; text-align: center; padding: 1
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>Order Now 🛒</h2>
         <form id="orderForm">
-            <label>Product</label>
-            <input type="text" id="product" readonly>
-            <label>Name</label>
-            <input type="text" required>
-            <label>Phone</label>
-            <input type="text" required>
-            <label>Address</label>
-            <input type="text" required>
-            <label>Quantity</label>
-            <input type="number" min="1" required>
-            <button type="submit" class="btn">Submit Order</button>
-        </form>
+    <label>Product</label>
+    <input type="text" id="order_product" name="product" readonly>
+    
+    <label>Name</label>
+    <input type="text" name="user_name" required>
+    
+    <label>Phone</label>
+    <input type="text" name="user_phone" required>
+    
+    <label>Address</label>
+    <input type="text" name="user_address" required>
+    
+    <label>Quantity</label>
+    <input type="number" name="quantity" min="1" required>
+    
+    <button type="submit" id="submitBtn" class="btn">Submit Order</button>
+</form>
         <p id="successMsg" style="display:none;color:green;margin-top:15px;text-align:center;font-weight:bold;">
             ✅ Order submitted!
         </p>
@@ -326,26 +331,33 @@ footer { background-color: #8b4513; color: white; text-align: center; padding: 1
 </footer>
 
 <script>
-function openModal(productName) {
-    document.getElementById("orderModal").style.display = "block";
-    document.getElementById("product").value = productName;
-    document.getElementById("successMsg").style.display = "none";
-}
-
-function closeModal() {
-    document.getElementById("orderModal").style.display = "none";
-}
-
-window.onclick = function(event) {
-    if (event.target == document.getElementById("orderModal")) {
-        closeModal();
-    }
-}
-
+// 處理下單
 document.getElementById("orderForm").addEventListener("submit", function(e) {
     e.preventDefault();
-    document.getElementById("successMsg").style.display = "block";
-    this.reset();
+    
+    const submitBtn = document.getElementById("submitBtn");
+    const scriptURL = https://script.google.com/macros/s/AKfycbzzj5hZO5tLAWffvfiP1QggVOOf0aY-K16BPodJjUxuIlAJbn_buxMjLpRJg91u5Ccn/exec; // 
+
+    submitBtn.innerText = "Processing...";
+    submitBtn.disabled = true;
+
+    // 使用 fetch 傳送資料到 Google Sheets
+    fetch(scriptURL, { 
+        method: 'POST', 
+        body: new FormData(this)
+    })
+    .then(response => {
+        document.getElementById("successMsg").style.display = "block";
+        submitBtn.innerText = "Submit Order";
+        submitBtn.disabled = false;
+        document.getElementById("orderForm").reset();
+    })
+    .catch(error => {
+        console.error('Error!', error.message);
+        alert("訂單送出失敗，請再試一次！");
+        submitBtn.innerText = "Submit Order";
+        submitBtn.disabled = false;
+    });
 });
 </script>
 
