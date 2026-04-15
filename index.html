@@ -68,11 +68,11 @@ section {
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
 }
 
 .item-card:hover {
     transform: translateY(-5px);
-    transition: 0.3s;
 }
 
 .item-img {
@@ -82,6 +82,23 @@ section {
 
 .item-content {
     padding: 15px;
+}
+
+/* 方案 A 特色樣式：加購清單 */
+.price-list {
+    text-align: left;
+    background-color: #fdf2e9;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 4px solid #d2691e;
+}
+
+.price-list p {
+    margin: 6px 0;
+    font-size: 0.9em;
+    color: #5d2e0a;
+    font-weight: 500;
 }
 
 /* About */
@@ -105,6 +122,13 @@ section {
     text-decoration: none;
     cursor: pointer;
     margin-top: 10px;
+    border: none;
+    width: 100%;
+    font-size: 1em;
+}
+
+.btn:hover {
+    background-color: #a0522d;
 }
 
 /* Footer */
@@ -113,6 +137,7 @@ footer {
     color: white;
     text-align: center;
     padding: 15px;
+    margin-top: 50px;
 }
 
 /* Modal */
@@ -141,6 +166,7 @@ footer {
     width: 100%;
     padding: 8px;
     margin: 8px 0;
+    box-sizing: border-box;
 }
 
 .close {
@@ -173,9 +199,7 @@ footer {
 <section id="about">
     <h2>About Us</h2>
     <div class="about-card">
-        <p>
-            LUXURY IS BETTER WHEN IT BREAKS.
-        </p>
+        <p>LUXURY IS BETTER WHEN IT BREAKS.</p>
     </div>
 </section>
 
@@ -188,8 +212,15 @@ footer {
             <img src="IMG_1229.jpeg" class="item-img" alt="Pistachio Croissant">
             <div class="item-content">
                 <h3>Pistachio Croissant</h3>
-                <p>NT$120</p>
-                <button class="btn" onclick="openModal('Pistachio Croissant')">Buy Now</button>
+                <p style="font-size: 1.2em; color: #d2691e; font-weight: bold;">NT$120</p>
+                
+                <div class="price-list">
+                    <p>🥐 Croissant NT$100</p>
+                    <p>🍪 Dubai Chewy Cookie (Mochi) NT$100</p>
+                    <p>🍰 Chocolate Pistachio Slice Cake NT$180</p>
+                </div>
+
+                <button class="btn" onclick="openModal('Pistachio Croissant & Related')">Buy Now</button>
             </div>
         </div>
 
@@ -210,7 +241,6 @@ footer {
                 <button class="btn" onclick="openModal('Chocolate Pistachio Cake')">Buy Now</button>
             </div>
         </div>
-
 
     </div>
 </section>
@@ -285,7 +315,7 @@ footer {
             <button type="submit" class="btn">Submit Order</button>
         </form>
 
-        <p id="successMsg" style="display:none;color:green;">
+        <p id="successMsg" style="display:none;color:green;margin-top:15px;text-align:center;font-weight:bold;">
             ✅ Order submitted!
         </p>
     </div>
@@ -300,10 +330,17 @@ footer {
 function openModal(productName) {
     document.getElementById("orderModal").style.display = "block";
     document.getElementById("product").value = productName;
+    document.getElementById("successMsg").style.display = "none";
 }
 
 function closeModal() {
     document.getElementById("orderModal").style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == document.getElementById("orderModal")) {
+        closeModal();
+    }
 }
 
 document.getElementById("orderForm").addEventListener("submit", function(e) {
